@@ -65,10 +65,6 @@ int main(int argc, char *argv[]) {
   long *set = malloc(MAX_N * sizeof(long));
 
   first_n_primes(set, MAX_N);
-
-  /*for (int i = 0; i < MAX_N; i++) {
-    printf("%li\n", set[i]);
-  }*/
   printf("%li\n", set[MAX_N - 1]);
 
   return 0;

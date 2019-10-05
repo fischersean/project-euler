@@ -50,7 +50,6 @@ int is_palindrome(int n) {
   // Check to make sure array is a palindrome
   for (int i = 0; i < digit_len; i++) {
     if (n_split[i] != n_split[digit_len - 1 - i]) {
-      // printf("(%d != %d)\n", n_split[i], n_split[digit_len - 1 - i]);
       return FALSE;
     }
   }
