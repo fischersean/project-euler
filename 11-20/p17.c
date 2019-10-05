@@ -44,7 +44,7 @@ int char_count(char *word) {
 
 int main(int argc, char *argv[]) {
 
-  // May God forgive me for this horrific routing i've writter
+  // May God forgive me for this horrific routine i've writter
   int count = 0;
   int n;
   int magnitude;
