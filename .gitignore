@@ -3,3 +3,5 @@
 tmp/
 *.dsym/
 .DS_STORE
+venv/
+*.code-workspace
