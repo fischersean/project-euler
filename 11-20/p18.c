@@ -37,9 +37,6 @@ int **read_trianle(const char *file_name, int n_lines) {
 }
 
 int max_path(const char *file_name, int n_lines) {
-    // Read in a file that contains a triangle graph and return the
-    // linked list that contains the graph representation of the data
-    // Will always return the bottom-1, right-most node as the entry
     int **input_buffer = read_trianle(file_name, n_lines);
     int A, a, b, max;
 
