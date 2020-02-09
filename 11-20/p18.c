@@ -15,20 +15,51 @@
  * Find the maximum total from top to bottom of the triangle below:
  */
 
-#include <math.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-struct node {
-  int value;
-  bool visited;
-  struct node *left;
-  struct node *right;
-  struct node *up;
-};
+int **read_trianle(const char *file_name, int n_lines) {
+    FILE *f = fopen(file_name, "r");
+
+    int line_len;
+    int **input_buffer = malloc(n_lines * sizeof(int *));
+    for (int i = 0; i < n_lines; i++) {
+        line_len = i + 1;
+        input_buffer[i] = malloc(line_len * sizeof(int *));
+        for (int j = 0; j < line_len; j++) {
+            fscanf(f, "%d", &input_buffer[i][j]);
+        }
+    }
+
+    fclose(f);
+    return input_buffer;
+}
+
+int max_path(const char *file_name, int n_lines) {
+    // Read in a file that contains a triangle graph and return the
+    // linked list that contains the graph representation of the data
+    // Will always return the bottom-1, right-most node as the entry
+    int **input_buffer = read_trianle(file_name, n_lines);
+    int A, a, b, max;
+
+    for (int i = n_lines - 2; i >= 0; i--) {
+        for (int j = 0; j < i + 1; j++) {
+            A = input_buffer[i][j];
+            a = input_buffer[i + 1][j];
+            b = input_buffer[i + 1][j + 1];
+            input_buffer[i][j] = a + A > b + A ? a + A : b + A;
+            /*printf("Collapsing %d, %d, %d -> %d\n", a, b, A,*/
+            /*input_buffer[i][j]);*/
+        }
+    }
+    max = input_buffer[0][0];
+    free(input_buffer);
+    return max;
+}
 
 int main(int argc, char *argv[]) {
-  //
-  return 0;
+    int result = max_path("resources/p18_tri.txt", 15);
+    printf("%d\n", result);
+    return 0;
 }
