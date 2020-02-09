@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int **read_trianle(const char *file_name, int n_lines) {
+int **read_triangle(const char *file_name, int n_lines) {
     FILE *f = fopen(file_name, "r");
 
     int line_len;
@@ -37,7 +37,7 @@ int **read_trianle(const char *file_name, int n_lines) {
 }
 
 int max_path(const char *file_name, int n_lines) {
-    int **input_buffer = read_trianle(file_name, n_lines);
+    int **input_buffer = read_triangle(file_name, n_lines);
     int A, a, b, max;
 
     for (int i = n_lines - 2; i >= 0; i--) {
