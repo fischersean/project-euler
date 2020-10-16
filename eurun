@@ -1,6 +1,12 @@
 #! /bin/sh
 
 
-gcc problems/p$1.c -o bin/p$1 && \
-    ./bin/p$1
+echo "Compiling..." && \
+    gcc -g problems/p$1.c -O3 -o bin/p$1 && \
+    echo "Compiled successfully. Running..." && \
+    ./bin/p$1 && \
+    echo "Run completed without error." && \
+    echo "Checking for memory leaks..." && \
+    valgrind --tool=memcheck --leak-check=full --show-reachable=yes --error-exitcode=1 ./bin/p$1 && \
+    echo "Memory leak check passed"
 
