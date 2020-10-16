@@ -67,7 +67,7 @@ long max_n_len(int *set, int len, int n) {
 
 int main(int argc, char *argvp[]) {
 
-  FILE *f = fopen("resources/p8_n.txt", "r");
+  FILE *f = fopen("problems/resources/p8_n.txt", "r");
   char *tmp = malloc(LEN_STR * sizeof(char));
   int *set = malloc(LEN_STR * sizeof(int));
 

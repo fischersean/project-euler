@@ -70,6 +70,7 @@ int *factorial(int n) {
             n_digits++;
         }
     }
+    free(b);
     return product;
 }
 
@@ -82,6 +83,7 @@ int main(int argc, char *argv[]) {
         i++;
     }
     printf("sum = %li\n", sum);
+    free(result);
 
     return 0;
 }

@@ -83,7 +83,7 @@ long horizontal_prod(int **grid, int x, int y, int len) {
 
 int main(int argc, char *argv[]) {
 
-  int **grid = read_int_grid(20, 20, "resources/p11_grid.txt");
+  int **grid = read_int_grid(20, 20, "problems/resources/p11_grid.txt");
 
   long max_prod = 1;
   long vert_prod;
@@ -115,6 +115,9 @@ int main(int argc, char *argv[]) {
   }
 
   printf("MAX = %li\n", max_prod);
+  for (int i = 0; i < 20; i++){
+    free(grid[i]);
+  }
   free(grid);
   return 0;
 }

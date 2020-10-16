@@ -51,12 +51,15 @@ int max_path(const char *file_name, int n_lines) {
         }
     }
     max = input_buffer[0][0];
+    for (int i = 0; i < n_lines; i++){
+        free(input_buffer[i]);
+    }
     free(input_buffer);
     return max;
 }
 
 int main(int argc, char *argv[]) {
-    int result = max_path("resources/p18_tri.txt", 15);
+    int result = max_path("problems/resources/p18_tri.txt", 15);
     printf("%d\n", result);
     return 0;
 }

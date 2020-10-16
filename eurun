@@ -2,7 +2,7 @@
 
 
 echo "Compiling..." && \
-    gcc -g problems/p$1.c -O3 -o bin/p$1 && \
+    gcc -std=c11 -g problems/p$1.c -O3 -o bin/p$1 && \
     echo "Compiled successfully. Running..." && \
     ./bin/p$1 && \
     echo "Run completed without error." && \

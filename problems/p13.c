@@ -29,7 +29,7 @@ char **read_input(const char *file_name, int n_lines, int length) {
 }
 
 int main(int argc, char *argv[]) {
-    char **input = read_input("resources/p13_input.txt", N_NUMBERS, LEN_NUMBER);
+    char **input = read_input("problems/resources/p13_input.txt", N_NUMBERS, LEN_NUMBER);
     int **numbers = malloc(N_NUMBERS * sizeof(int *));
 
     for (int i = 0; i < N_NUMBERS; i++) {
@@ -70,6 +70,11 @@ int main(int argc, char *argv[]) {
         printf("%d", tmp);
     }
     printf("\n");
+
+    for (int i = 0; i < N_NUMBERS; i++){
+        free(numbers[i]);
+    }
+    free(numbers);
 
     return 0;
 }

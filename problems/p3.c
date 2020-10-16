@@ -91,10 +91,12 @@ int main(int argc, char *argv[]) {
     factor_a = rho_factor(n, random());
     factor_b = n / factor_a;
 
-    printf("(%li, %li)\n", factor_a, factor_b);
+    /*printf("(%li, %li)\n", factor_a, factor_b);*/
     // If both a and b are prime -> fully factored
     a_prime_bool = is_prime(factor_a);
     b_prime_bool = is_prime(factor_b);
+    /*printf("%d\n", a_prime_bool);*/
+    /*printf("%d\n", b_prime_bool);*/
 
     if (a_prime_bool && b_prime_bool) {
 
