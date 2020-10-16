@@ -1,0 +1,6 @@
+#! /bin/sh
+
+
+gcc problems/p$1.c -o bin/p$1 && \
+    ./bin/p$1
+
