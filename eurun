@@ -1,14 +1,61 @@
-#! /bin/sh
+#!/bin/sh
 
+PROGNAME=p$1
+SRCPATH=problems/$PROGNAME.c
+BINDIR=bin
+EXEPATH=$BINDIR/PROGNAME
 
-echo "Compiling..." && \
-    gcc -std=c11 -g problems/p$1.c -O3 -o bin/p$1 && \
-    echo "Compiled successfully. Running..." && \
-    ./bin/p$1 && \
-    echo "Run completed without error." && \
-    echo "Checking for memory leaks..." && \
-    valgrind --tool=memcheck --leak-check=full --show-reachable=yes --error-exitcode=1 ./bin/p$1 && \
-    echo "Memory leak check passed" && \
-    echo "Cleaning up" && \
-    rm -rf bin/p$1 bin/p$1.dSYM
+GCC=gcc
+GCCFLAGS="-std=c18 -g"
+GCCOPTLVL=-O3
+
+VALGRIND=valgrind
+VALFLAGS="-q --tool=memcheck --leak-check=full --show-reachable=yes --error-exitcode=1"
+
+function cleanup {
+    echo "Cleaning up..."
+    rm -rf $EXEPATH $BINDIR/$PROGNAME.dSYM
+    echo "Finished"
+}
+
+echo "Compiling..." 
+
+if $GCC $GCCFLAGS $SRCPATH $GCCOPTLVL -o $EXEPATH; then
+    echo "Compiled successfully"
+else
+    echo "Compile step failed"
+    cleanup
+    exit 1
+fi
+
+echo "Running..."
+
+if time ./$EXEPATH ; then
+    echo "Run completed" 
+else
+    echo "Run failed"
+    cleanup
+    exit 1
+fi
+
+echo "Checking for memory errors..."
+
+if $VALGRIND $VALFLAGS ./$EXEPATH > /dev/null; then
+    echo "Memory check passed" 
+else
+    echo "Memory check failed"
+    cleanup
+    exit 1
+fi
+
+cleanup
+
+#gcc -std=c18 -g problems/p$1.c -O3 -o bin/p$1 && \
+#time ./bin/p$1 && \
+#echo "Run completed without error." && \
+#echo "Checking for memory leaks..." && \
+#valgrind -q --tool=memcheck --leak-check=full --show-reachable=yes --error-exitcode=1 ./bin/p$1 > /dev/null && \
+#echo "Memory leak check passed" && \
+#echo "Cleaning up" && \
+#rm -rf bin/p$1 bin/p$1.dSYM
 
