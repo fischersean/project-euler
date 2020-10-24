@@ -46,7 +46,7 @@ long rho_factor(long long n, long x) {
   // https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm
   long y, d; // Initial values for sequence
   long tmp;
-  x = x;
+  x = 2;
   y = 2;
   d = 1;
   while (d == 1) {
@@ -57,7 +57,8 @@ long rho_factor(long long n, long x) {
     } else {
       tmp = y - x;
     }
-    d = gcd(tmp, n);
+
+    d = gcd(labs(x - y), n);
   }
 
   return d;
@@ -88,15 +89,13 @@ int main(int argc, char *argv[]) {
    * binary tree search with the rho algorithm
    */
   while (!fully_factored) {
+
     factor_a = rho_factor(n, random());
     factor_b = n / factor_a;
 
-    /*printf("(%li, %li)\n", factor_a, factor_b);*/
     // If both a and b are prime -> fully factored
     a_prime_bool = is_prime(factor_a);
     b_prime_bool = is_prime(factor_b);
-    /*printf("%d\n", a_prime_bool);*/
-    /*printf("%d\n", b_prime_bool);*/
 
     if (a_prime_bool && b_prime_bool) {
 
@@ -133,6 +132,8 @@ int main(int argc, char *argv[]) {
 
   printf("The largest prime factor of %li found was: %li\n", TARGET_N,
          cur_high_factor);
+
+  free(fact_list);
 
   return 0;
 }
