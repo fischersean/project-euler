@@ -26,4 +26,5 @@ Yes, I know my solutions are riddled with memory leaks.
 | 18             | ✅               | ✅                |
 | 19             | ✅               | ✅              |
 | 20             | ✅               | ❌                |
+| 21             | ✅               | ✅                |
 

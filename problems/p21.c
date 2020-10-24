@@ -10,7 +10,43 @@
  * Evaluate the sum of all the amicable numbers under 10000.
  */
 
+#include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
 
-int main(int argc, char *argv[]) { return 0; }
+#define U_BOUND 10000
+
+int sum_divisors(int n) {
+  // +1 is for the 1 divisor of all whole numbers
+  int sum = 1;
+  for (int i = 2; i < sqrt(n); i++) {
+    if (n % i == 0) {
+      sum += i;
+      sum += n / i;
+    }
+  }
+  return sum;
+}
+
+int pair_sum(int a) {
+  int asum = sum_divisors(a);
+  int bsum = sum_divisors(asum);
+
+  if (a != bsum || asum < a) {
+    return 0;
+  } else if ((asum + bsum) - a == a) {
+    return 0;
+  } else {
+    return asum + bsum;
+  }
+}
+
+int main(int argc, char *argv[]) {
+
+  int asum = 0;
+  for (int i = 0; i < U_BOUND; i++) {
+    asum += pair_sum(i);
+  }
+  printf("%d\n", asum);
+  return 0;
+}
