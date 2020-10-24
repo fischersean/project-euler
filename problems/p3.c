@@ -45,19 +45,12 @@ long rho_g(long x, long long n) { return (x * x + 1) % n; }
 long rho_factor(long long n, long x) {
   // https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm
   long y, d; // Initial values for sequence
-  long tmp;
   x = 2;
   y = 2;
   d = 1;
   while (d == 1) {
     x = rho_g(x, n);
     y = rho_g(rho_g(y, n), n);
-    if (x > y) {
-      tmp = x - y;
-    } else {
-      tmp = y - x;
-    }
-
     d = gcd(labs(x - y), n);
   }
 
