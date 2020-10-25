@@ -30,9 +30,12 @@ int sum_divisors(int n) {
 
 int pair_sum(int a) {
   int asum = sum_divisors(a);
+  if (asum < a){
+    return 0;
+  }
   int bsum = sum_divisors(asum);
 
-  if (a != bsum || asum < a || (asum + bsum) - a == a) {
+  if (a != bsum || (asum + bsum) - a == a) {
     return 0;
   } else {
     return asum + bsum;
