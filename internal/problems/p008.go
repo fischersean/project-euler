@@ -25,7 +25,7 @@ func P8(input string) uint64 {
 		if set[i] == 0 {
 			// small optimization for cases where we land on 0.
 			// if we land on 0 we know for sure the runningProduct will be 0
-			i += nAdj
+			i += nAdj - 1
 			continue
 		}
 		for j := nAdj - 1; j >= 0; j-- {
