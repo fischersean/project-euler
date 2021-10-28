@@ -9,6 +9,9 @@ lint:
 
 test:
 	@make lint && go test -coverprofile cp.out $$(go list ./...)
+
+benchmark:
+	@make lint && go test -bench=. $$(go list ./...)
 			
 fmt:
 	@gofmt -s -w .

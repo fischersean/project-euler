@@ -9,3 +9,9 @@ func TestP5(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func BenchmarkP5(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		P5()
+	}
+}

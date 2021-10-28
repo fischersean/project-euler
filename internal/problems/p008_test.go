@@ -14,3 +14,14 @@ func TestP8(t *testing.T) {
 		t.Fail()
 	}
 }
+
+func BenchmarkP8(b *testing.B) {
+	buf, err := os.ReadFile("../../data/p8.txt")
+	if err != nil {
+		b.Error(err)
+	}
+	input := string(buf[:len(buf)-1])
+	for i := 0; i < b.N; i++ {
+		P8(input)
+	}
+}
