@@ -21,6 +21,7 @@ func BenchmarkP8(b *testing.B) {
 		b.Error(err)
 	}
 	input := string(buf[:len(buf)-1])
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		P8(input)
 	}
