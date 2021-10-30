@@ -63,7 +63,7 @@ func createFiles(pNum int) error {
 	if err != nil {
 		return err
 	}
-	defer pf.Close()
+	defer tf.Close()
 
 	// populate files
 	_, err = pf.WriteString(problemFileText(pNum))
